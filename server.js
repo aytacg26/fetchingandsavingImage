@@ -1,16 +1,10 @@
 const axios = require('axios');
 const express = require('express');
+const dotenv = require('dotenv').config();
 const rateLimit = require('express-rate-limit');
 const { compressAndSaveWebp } = require('./utils/utils');
 
 const app = express();
-
-// const limiter = rateLimit({
-//   windowMs: 1 * 60 * 1000,
-//   max: 5,
-//   standardHeaders: true,
-//   legacyHeaders: false,
-// });
 
 const getLimiter = rateLimit({
   windowMs: 0.5 * 60 * 1000,
@@ -26,17 +20,13 @@ app.use('/public', express.static('public'));
 
 app.get('/image/:imgName', getLimiter, (req, res) => {
   const img = req.params.imgName;
-
+  console.log('Just for testing Limiter');
   return res.send();
-});
-
-app.post('/', (req, res) => {
-  res.json('Again Hello world');
 });
 
 app.post('/image', async (req, res) => {
   const imageData = await axios.get(
-    'https://pixabay.com/api/?key=2718835-1fb7bb1bcc348d35ed344d71e&q=yellow+flowers&image_type=photo'
+    `https://pixabay.com/api/?key=${process.env.KEY}&q=yellow+flowers&image_type=photo`
   );
 
   const targetImage = imageData.data.hits[0]['largeImageURL'];
