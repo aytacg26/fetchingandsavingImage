@@ -1,8 +1,9 @@
 In this study I have used the following packages:
-"axios": "^1.1.2",
-"express": "^4.18.1",
-"express-rate-limit": "^6.6.0",
-"sharp": "^0.31.1"
+
+- "axios": "^1.1.2",
+- "express": "^4.18.1",
+- "express-rate-limit": "^6.6.0",
+- "sharp": "^0.31.1"
 
 main package of the study is sharp, target of the study was to fetch an image from a link, compress it and convert it
 to webp and create two files (compressed image and thumbnail of the image) in filesystem under the created folder
